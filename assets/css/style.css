@@ -1,0 +1,60 @@
+:root {
+	--bg: #0f0f0f;
+	--text: #f2f2f2;
+	--muted: #b3b3b3;
+	--accent: #e50914; /* Netflix red */
+	--card: #1a1a1a;
+	--border: #2a2a2a;
+}
+
+[data-theme="light"] {
+	--bg: #ffffff;
+	--text: #111111;
+	--muted: #555555;
+	--accent: #e50914;
+	--card: #f7f7f7;
+	--border: #e1e1e1;
+}
+
+* { box-sizing: border-box; }
+body {
+	margin: 0;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+	background: var(--bg);
+	color: var(--text);
+	line-height: 1.6;
+	font-size: 18px;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.bf-header { border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10; }
+.bf-header .brand { font-weight: 800; color: var(--accent); font-size: 1.4rem; }
+.bf-header .nav a { color: var(--text); text-decoration: none; margin-right: 12px; }
+.bf-header .nav a.btn { background: var(--accent); padding: 6px 10px; border-radius: 4px; color: #fff; }
+.bf-header .container { display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
+.bf-header .nav { flex: 1; }
+.toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 6px 10px; border-radius: 4px; }
+
+.bf-main { padding: 20px 0; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+label { display: block; margin-bottom: 6px; }
+input, select, button, textarea { font-size: 18px; }
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; background: transparent; color: var(--text); }
+button.primary { background: var(--accent); color: #fff; border: none; padding: 10px 14px; border-radius: 6px; cursor: pointer; }
+button.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); padding: 10px 14px; border-radius: 6px; cursor: pointer; }
+.muted { color: var(--muted); }
+.stat { font-size: 1.6rem; font-weight: 700; }
+.row { display: flex; flex-wrap: wrap; gap: 16px; }
+.col { flex: 1; min-width: 240px; }
+.list { list-style: none; padding: 0; margin: 0; }
+.list li { padding: 10px 0; border-bottom: 1px solid var(--border); }
+
+@media (prefers-reduced-motion: reduce) {
+	* { transition: none !important; }
+}
+
+@media (max-width: 600px) {
+	body { font-size: 17px; }
+}
+
+

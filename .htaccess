@@ -1,0 +1,14 @@
+Options -Indexes
+RewriteEngine On
+
+# Block direct web access to internal folders
+RewriteRule ^(config|inc)/ - [F,L]
+
+# Serve existing files directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule . - [L]
+
+# Default to index.php for root
+DirectoryIndex index.php
+
+
