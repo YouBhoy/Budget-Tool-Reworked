@@ -34,7 +34,7 @@ function bf_start_session(): void {
 function bf_require_login(): void {
 	bf_start_session();
 	if (empty($_SESSION['user'])) {
-		header('Location: /login.php');
+		header('Location: login.php');
 		exit;
 	}
 }

@@ -64,6 +64,37 @@
 			setTimeout(function() { msg.remove(); }, 300);
 		}, 5000);
 	});
+	
+	// Tab switching functionality
+	window.switchTab = function(tabName) {
+		// Hide all tab contents
+		var tabContents = document.querySelectorAll('.tab-content');
+		tabContents.forEach(function(content) {
+			content.style.display = 'none';
+		});
+		
+		// Remove active class from all tab buttons
+		var tabButtons = document.querySelectorAll('.tab-button');
+		tabButtons.forEach(function(button) {
+			button.classList.remove('active');
+			button.style.borderBottom = '2px solid transparent';
+			button.style.color = 'var(--muted)';
+		});
+		
+		// Show selected tab content
+		var selectedTab = document.getElementById(tabName + '-tab');
+		if (selectedTab) {
+			selectedTab.style.display = 'block';
+		}
+		
+		// Add active class to selected tab button
+		var selectedButton = document.getElementById('tab-' + tabName);
+		if (selectedButton) {
+			selectedButton.classList.add('active');
+			selectedButton.style.borderBottom = '2px solid var(--accent)';
+			selectedButton.style.color = 'var(--accent)';
+		}
+	};
 })();
 
 
