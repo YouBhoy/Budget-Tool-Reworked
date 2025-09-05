@@ -38,15 +38,15 @@ $transactions = $txStmt->fetchAll();
 <section class="grid" aria-label="Summary stats">
 	<div class="card">
 		<div class="muted">Income</div>
-		<div class="stat">$<?php echo number_format($income, 2); ?></div>
+		<div class="stat text-income">$<?php echo number_format($income, 2); ?></div>
 	</div>
 	<div class="card">
 		<div class="muted">Expenses</div>
-		<div class="stat">$<?php echo number_format($expense, 2); ?></div>
+		<div class="stat text-expense">$<?php echo number_format($expense, 2); ?></div>
 	</div>
 	<div class="card">
 		<div class="muted">Savings</div>
-		<div class="stat">$<?php echo number_format($savings, 2); ?></div>
+		<div class="stat <?php echo $savings >= 0 ? 'text-income' : 'text-expense'; ?>">$<?php echo number_format($savings, 2); ?></div>
 	</div>
 </section>
 
@@ -68,13 +68,15 @@ $transactions = $txStmt->fetchAll();
 						<?php echo htmlspecialchars($t['occurred_on']); ?>
 					</div>
 					<div class="col" style="max-width:120px;">
-						<?php echo htmlspecialchars($t['type']); ?>
+						<span class="pill <?php echo $t['type'] === 'income' ? 'badge-income' : 'badge-expense'; ?>">
+							<?php echo htmlspecialchars($t['type']); ?>
+						</span>
 					</div>
 					<div class="col">
 						<?php echo htmlspecialchars($t['category']); ?>
 					</div>
 					<div class="col" style="max-width:140px; text-align:right;">
-						$<?php echo number_format((float)$t['amount'], 2); ?>
+						<span class="<?php echo $t['type'] === 'income' ? 'text-income' : 'text-expense'; ?>">$<?php echo number_format((float)$t['amount'], 2); ?></span>
 					</div>
 					<div class="col">
 						<span class="muted"><?php echo htmlspecialchars((string)$t['assigned_to']); ?></span>
