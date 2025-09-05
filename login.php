@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	} else {
 		list($ok, $msg) = bf_login_user($_POST['email'] ?? '', $_POST['password'] ?? '');
 		if ($ok) {
-			header('Location: /dashboard.php');
+			header('Location: dashboard.php');
 			exit;
 		} else {
 			$error = $msg;
@@ -19,23 +19,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<section class="card" aria-labelledby="login-title">
-	<h1 id="login-title">Login</h1>
-	<?php if ($error): ?><p role="alert" style="color:#ff6b6b;">
-		<?php echo htmlspecialchars($error); ?>
-	</p><?php endif; ?>
-	<form method="post" action="/login.php">
-		<?php echo bf_csrf_field(); ?>
-		<label for="email">Email</label>
-		<input id="email" name="email" type="email" required autocomplete="username">
-		<label for="password">Password</label>
-		<input id="password" name="password" type="password" required autocomplete="current-password">
-		<div style="margin-top:12px;">
-			<button class="primary" type="submit">Login</button>
-			<a href="/register.php" class="muted" style="margin-left:8px;">Create account</a>
+<div class="auth-container">
+	<div class="auth-card" aria-labelledby="login-title">
+		<h1 id="login-title" class="auth-title">Welcome Back</h1>
+		<p class="auth-subtitle">Sign in to your BudgetFlix account</p>
+		
+		<?php if ($error): ?>
+			<div class="error-message" role="alert">
+				<?php echo htmlspecialchars($error); ?>
+			</div>
+		<?php endif; ?>
+		
+		<form method="post" action="login.php" id="loginForm">
+			<?php echo bf_csrf_field(); ?>
+			
+			<div class="form-group">
+				<label for="email">Email Address</label>
+				<input id="email" name="email" type="email" required autocomplete="username" 
+					   placeholder="Enter your email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
+			</div>
+			
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input id="password" name="password" type="password" required autocomplete="current-password" 
+					   placeholder="Enter your password">
+			</div>
+			
+			<button class="auth-button" type="submit">Sign In</button>
+		</form>
+		
+		<div class="auth-link">
+			Don't have an account? <a href="register.php">Create one here</a>
 		</div>
-	</form>
-</section>
+	</div>
+</div>
 
 <?php require_once __DIR__ . '/inc/footer.php'; ?>
 

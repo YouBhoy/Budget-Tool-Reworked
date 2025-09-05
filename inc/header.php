@@ -16,15 +16,15 @@ $user = $_SESSION['user'] ?? null;
 		<div class="container">
 			<div class="brand"><?php echo htmlspecialchars(APP_NAME); ?></div>
 			<nav class="nav" role="navigation" aria-label="Primary">
-				<a href="/index.php">Home</a>
+				<a href="index.php">Home</a>
 				<?php if ($user): ?>
-					<a href="/dashboard.php">Dashboard</a>
-					<a href="/backup.php">Backup</a>
-					<a href="/help.php">Help</a>
-					<a href="/logout.php">Logout</a>
+					<a href="dashboard.php">Dashboard</a>
+					<a href="backup.php">Backup</a>
+					<a href="help.php">Help</a>
+					<a href="logout.php">Logout</a>
 				<?php else: ?>
-					<a href="/login.php">Login</a>
-					<a href="/register.php" class="btn">Register</a>
+					<a href="login.php">Login</a>
+					<a href="register.php" class="btn">Register</a>
 				<?php endif; ?>
 			</nav>
 			<button id="themeToggle" class="toggle" aria-label="Toggle dark and light theme">🌓</button>

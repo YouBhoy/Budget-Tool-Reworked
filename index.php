@@ -17,10 +17,24 @@
 		</div>
 		<div class="col">
 			<?php if (empty($_SESSION['user'])): ?>
-				<a class="btn" href="/register.php"><button class="primary">Create Account</button></a>
-				<a class="btn" href="/login.php"><button class="secondary">Login</button></a>
+				<div style="display: flex; gap: 12px; flex-wrap: wrap;">
+					<a href="register.php" style="text-decoration: none;">
+						<button class="primary" style="padding: 12px 24px; font-size: 16px; font-weight: 600;">
+							Get Started Free
+						</button>
+					</a>
+					<a href="login.php" style="text-decoration: none;">
+						<button class="secondary" style="padding: 12px 24px; font-size: 16px; font-weight: 600;">
+							Sign In
+						</button>
+					</a>
+				</div>
 			<?php else: ?>
-				<a class="btn" href="/dashboard.php"><button class="primary">Go to Dashboard</button></a>
+				<a href="dashboard.php" style="text-decoration: none;">
+					<button class="primary" style="padding: 12px 24px; font-size: 16px; font-weight: 600;">
+						Go to Dashboard
+					</button>
+				</a>
 			<?php endif; ?>
 		</div>
 	</div>
