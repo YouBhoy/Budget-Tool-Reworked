@@ -1,11 +1,11 @@
-<?php
+ <?php
 // BudgetFlix configuration
 
 // Update these with your InfinityFree database credentials
-define('DB_HOST', getenv('BF_DB_HOST') ?: 'localhost');
-define('DB_NAME', getenv('BF_DB_NAME') ?: 'budgetflix');
-define('DB_USER', getenv('BF_DB_USER') ?: 'root');
-define('DB_PASS', getenv('BF_DB_PASS') ?: '');
+define('DB_HOST', getenv('BF_DB_HOST') ?: 'sql106.infinityfree.com');
+define('DB_NAME', getenv('BF_DB_NAME') ?: 'if0_39815401_budgetflix');
+define('DB_USER', getenv('BF_DB_USER') ?: 'if0_39815401');
+define('DB_PASS', getenv('BF_DB_PASS') ?: 'mFF7gnZysj');
 define('DB_CHARSET', 'utf8mb4');
 
 // App settings

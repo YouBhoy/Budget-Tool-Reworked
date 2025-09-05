@@ -147,11 +147,10 @@ $goals = $goalsStmt->fetchAll();
 <section class="card" aria-labelledby="tabs-title">
 	<h2 id="tabs-title">Manage Your Finances</h2>
 	<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid var(--border);">
-		<button id="tab-transactions" class="tab-button active" onclick="switchTab('transactions')" style="background: none; border: none; padding: 12px 16px; border-bottom: 2px solid var(--accent); color: var(--accent); font-weight: 600; cursor: pointer;">Transactions</button>
 		<button id="tab-goals" class="tab-button" onclick="switchTab('goals')" style="background: none; border: none; padding: 12px 16px; border-bottom: 2px solid transparent; color: var(--muted); font-weight: 600; cursor: pointer;">Goals</button>
 	</div>
 	
-	<div id="transactions-tab" class="tab-content">
+	<div id="transactions-tab" class="tab-content" style="display: none;">
 		<div class="card" aria-labelledby="add-title">
 			<h3 id="add-title">Add transaction</h3>
 			<form method="post" action="dashboard.php" class="row">
@@ -191,7 +190,7 @@ $goals = $goalsStmt->fetchAll();
 		</div>
 	</div>
 	
-	<div id="goals-tab" class="tab-content" style="display: none;">
+	<div id="goals-tab" class="tab-content">
 		<div class="card" aria-labelledby="goals-title">
 			<h3 id="goals-title">Savings Goals</h3>
 			<div class="row" style="margin-bottom: 20px;">
@@ -450,6 +449,22 @@ $goals = $goalsStmt->fetchAll();
 	</ul>
 </section>
 
+
+<script>
+	// On page load, show only the goals tab
+	document.addEventListener('DOMContentLoaded', function() {
+		var goalsTab = document.getElementById('goals-tab');
+		if (goalsTab) goalsTab.style.display = '';
+		var transactionsTab = document.getElementById('transactions-tab');
+		if (transactionsTab) transactionsTab.style.display = 'none';
+		var goalsBtn = document.getElementById('tab-goals');
+		if (goalsBtn) {
+			goalsBtn.classList.add('active');
+			goalsBtn.style.borderBottom = '2px solid var(--accent)';
+			goalsBtn.style.color = 'var(--accent)';
+		}
+	});
+</script>
 <?php require_once __DIR__ . '/inc/footer.php'; ?>
 
 
