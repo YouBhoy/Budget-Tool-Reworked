@@ -79,13 +79,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$goalId = isset($_POST['goal_id']) ? (int)$_POST['goal_id'] : 0;
 		$amount = (float)($_POST['amount'] ?? 0);
 		
-		if ($goalId > 0 && $amount > 0) {
-			$stmt = $pdo->prepare('UPDATE goals SET current_amount = current_amount + ? WHERE id = ? AND user_id = ?');
-			$stmt->execute([$amount, $goalId, $userId]);
-			$notice = '<div class="success-message">Added $' . number_format($amount, 2) . ' to your goal!</div>';
-		} else {
-			$notice = '<div class="error-message">Please enter a valid amount.</div>';
-		}
+		   if ($goalId > 0 && $amount > 0) {
+			   $stmt = $pdo->prepare('UPDATE goals SET current_amount = current_amount + ? WHERE id = ? AND user_id = ?');
+			   $stmt->execute([$amount, $goalId, $userId]);
+			   header('Location: dashboard.php?notice=' . urlencode('Added $' . number_format($amount, 2) . ' to your goal!'));
+			   exit;
+		   } else {
+			   $notice = '<div class="error-message">Please enter a valid amount.</div>';
+		   }
 	} else if ($action === 'deduct_money') {
 		$goalId = isset($_POST['goal_id']) ? (int)$_POST['goal_id'] : 0;
 		$amount = (float)($_POST['amount'] ?? 0);
@@ -98,11 +99,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			
 			if ($current !== false && $amount <= $current) {
 				$stmt = $pdo->prepare('UPDATE goals SET current_amount = current_amount - ? WHERE id = ? AND user_id = ?');
-				$stmt->execute([$amount, $goalId, $userId]);
-				$notice = '<div class="success-message">Deducted $' . number_format($amount, 2) . ' from your goal.</div>';
-			} else {
-				$notice = '<div class="error-message">Cannot deduct more than current amount ($' . number_format($current, 2) . ').</div>';
-			}
+				   $stmt->execute([$amount, $goalId, $userId]);
+				   header('Location: dashboard.php?notice=' . urlencode('Deducted $' . number_format($amount, 2) . ' from your goal!'));
+				   exit;
+			   } else {
+				   $notice = '<div class="error-message">Cannot deduct more than current amount ($' . number_format($current, 2) . ').</div>';
+			   }
 		} else {
 			$notice = '<div class="error-message">Please enter a valid amount.</div>';
 		}
