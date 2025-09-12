@@ -45,11 +45,16 @@
 <section class="card" aria-labelledby="goals-title" style="margin-top: 32px;">
 	<h2 id="goals-title">Your Savings Goals</h2>
 	<?php
-		require_once __DIR__ . '/config/db.php';
-		$pdo = bf_get_pdo();
-		$goalsStmt = $pdo->prepare('SELECT name, target_amount, current_amount, due_on FROM goals ORDER BY created_at DESC');
-		$goalsStmt->execute();
-		$goals = $goalsStmt->fetchAll();
+		   require_once __DIR__ . '/config/db.php';
+		   $pdo = bf_get_pdo();
+		   $userId = $user['id'] ?? null;
+		   if ($userId) {
+			   $goalsStmt = $pdo->prepare('SELECT name, target_amount, current_amount, due_on FROM goals WHERE user_id = ? ORDER BY created_at DESC');
+			   $goalsStmt->execute([$userId]);
+			   $goals = $goalsStmt->fetchAll();
+		   } else {
+			   $goals = [];
+		   }
 	?>
 	<?php if (empty($goals)): ?>
 		<p class="muted">No goals yet. Create your first savings goal in your dashboard!</p>
