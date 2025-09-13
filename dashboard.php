@@ -147,17 +147,18 @@ $goals = $goalsStmt->fetchAll();
 <?php echo $notice; ?>
 
 <section class="card" aria-labelledby="tabs-title">
-	<h2 id="tabs-title">Manage Your Finances</h2>
-	<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid var(--border);">
-		<button id="tab-goals" class="tab-button" onclick="switchTab('goals')" style="background: none; border: none; padding: 12px 16px; border-bottom: 2px solid transparent; color: var(--muted); font-weight: 600; cursor: pointer;">Goals</button>
-	</div>
-	
-	<div id="transactions-tab" class="tab-content" style="display: none;">
-		<div class="card" aria-labelledby="add-title">
-			<h3 id="add-title">Add transaction</h3>
-			<form method="post" action="dashboard.php" class="row">
-				<?php echo bf_csrf_field(); ?>
-				<input type="hidden" name="action" value="create">
+   <h2 id="tabs-title">Manage Your Finances</h2>
+   <div class="row" style="margin-bottom: 20px; border-bottom: 1px solid var(--border);">
+	   <button id="tab-goals" class="tab-button" onclick="switchTab('goals')" style="background: none; border: none; padding: 12px 16px; border-bottom: 2px solid transparent; color: var(--muted); font-weight: 600; cursor: pointer;">Goals</button>
+	   <button id="tab-account" class="tab-button" onclick="switchTab('account')" style="background: none; border: none; padding: 12px 16px; border-bottom: 2px solid transparent; color: var(--muted); font-weight: 600; cursor: pointer;">Account</button>
+   </div>
+
+   <div id="transactions-tab" class="tab-content" style="display: none;">
+	   <div class="card" aria-labelledby="add-title">
+		   <h3 id="add-title">Add transaction</h3>
+		   <form method="post" action="dashboard.php" class="row">
+			   <?php echo bf_csrf_field(); ?>
+			   <input type="hidden" name="action" value="create">
 				<div class="col" style="max-width:150px;">
 					<label for="occurred_on">Date</label>
 					<input id="occurred_on" name="occurred_on" type="date" value="<?php echo htmlspecialchars(date('Y-m-d')); ?>" required>
@@ -192,7 +193,7 @@ $goals = $goalsStmt->fetchAll();
 		</div>
 	</div>
 	
-	<div id="goals-tab" class="tab-content">
+		<div id="goals-tab" class="tab-content">
 		<div class="card" aria-labelledby="goals-title">
 			<h3 id="goals-title">Savings Goals</h3>
 			<div class="row" style="margin-bottom: 20px;">
@@ -346,7 +347,38 @@ $goals = $goalsStmt->fetchAll();
 			<?php endif; ?>
 		</div>
 	</div>
+
 </section>
+
+
+   <div id="account-tab" class="tab-content" style="display: none; max-width: 500px; margin: 0 auto;">
+	   <div class="card" aria-labelledby="edit-account-title">
+		   <h2 id="edit-account-title">Edit Account</h2>
+		   <form method="post" action="dashboard.php" class="row">
+			   <?php echo bf_csrf_field(); ?>
+			   <input type="hidden" name="action" value="edit_account">
+			   <div class="col" style="min-width: 100%;">
+				   <label for="edit_name">Name</label>
+				   <input id="edit_name" name="edit_name" type="text" value="<?php echo htmlspecialchars($_SESSION['user']['name'] ?? ''); ?>" required>
+			   </div>
+			   <div class="col" style="min-width: 100%;">
+				   <label for="edit_email">Email</label>
+				   <input id="edit_email" name="edit_email" type="email" value="<?php echo htmlspecialchars($_SESSION['user']['email'] ?? ''); ?>" required>
+			   </div>
+			   <div class="col" style="min-width: 100%;">
+				   <label for="edit_password">New Password <span class="muted">(leave blank to keep current)</span></label>
+				   <input id="edit_password" name="edit_password" type="password" placeholder="New password">
+			   </div>
+			   <div class="col" style="min-width: 100%;">
+				   <label for="edit_current_password">Current Password <span class="muted">(required to save changes)</span></label>
+				   <input id="edit_current_password" name="edit_current_password" type="password" required>
+			   </div>
+			   <div class="col" style="min-width: 100%; text-align: right;">
+				   <button class="primary" type="submit">Save Changes</button>
+			   </div>
+		   </form>
+	   </div>
+   </div>
 
 <section class="grid" aria-label="Summary stats">
 	<div class="card">
