@@ -1,4 +1,29 @@
 (function() {
+	var currencyKey = 'bf_currency';
+	var currencySelect = document.getElementById('currencySelect');
+	if (currencySelect) {
+		// Set dropdown to saved value
+		var savedCurrency = localStorage.getItem(currencyKey);
+		if (savedCurrency) {
+			currencySelect.value = savedCurrency;
+		}
+		currencySelect.addEventListener('change', function() {
+			localStorage.setItem(currencyKey, currencySelect.value);
+			// Optionally, trigger a UI update for currency symbols
+			updateCurrencySymbols(currencySelect.value);
+		});
+		// Initial update
+		updateCurrencySymbols(currencySelect.value);
+	}
+
+	function updateCurrencySymbols(symbol) {
+		var els = document.querySelectorAll('.currency-symbol');
+		els.forEach(function(el) {
+			el.textContent = symbol;
+		});
+	}
+})();
+(function() {
 	var root = document.documentElement;
 	var key = 'bf_theme';
 	var btn = document.getElementById('themeToggle');

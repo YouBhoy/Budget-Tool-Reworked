@@ -82,8 +82,8 @@
 						</div>
 					</div>
 					<div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px;">
-						<span class="muted">$<?php echo number_format($goal['current_amount'], 2); ?> of $<?php echo number_format($goal['target_amount'], 2); ?></span>
-						<span class="muted">$<?php echo number_format($goal['target_amount'] - $goal['current_amount'], 2); ?> left</span>
+						   <span class="muted"><span class="currency-symbol"></span><?php echo number_format($goal['current_amount'], 2); ?> of <span class="currency-symbol"></span><?php echo number_format($goal['target_amount'], 2); ?></span>
+						   <span class="muted"><span class="currency-symbol"></span><?php echo number_format($goal['target_amount'] - $goal['current_amount'], 2); ?> left</span>
 					</div>
 					<?php if ($goal['due_on']): ?>
 						<div class="muted" style="font-size: 0.8rem;">

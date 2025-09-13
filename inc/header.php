@@ -27,7 +27,14 @@ $user = $_SESSION['user'] ?? null;
 					<a href="register.php" class="btn">Register</a>
 				<?php endif; ?>
 			</nav>
-			<button id="themeToggle" class="toggle" aria-label="Toggle dark and light theme">🌓</button>
+			   <button id="themeToggle" class="toggle" aria-label="Toggle dark and light theme">🌓</button>
+			   <select id="currencySelect" style="margin-left: 10px; padding: 2px 6px; font-size: 0.9em; border-radius: 4px; border: 1px solid var(--border); background: var(--background); color: var(--text); max-width: 90px; height: 28px;">
+				   <option value="$">$ USD</option>
+				   <option value="€">€ EUR</option>
+				   <option value="£">£ GBP</option>
+				   <option value="₱">₱ PHP</option>
+				   <option value="₹">₹ INR</option>
+			   </select>
 		</div>
 	</header>
 	<main class="bf-main container" role="main">
